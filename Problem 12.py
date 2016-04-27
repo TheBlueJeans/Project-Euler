@@ -17,7 +17,8 @@ while combi <= 500:
         factors.append([i, count])
 
     while temp > 1:
-        for i in range(factors[-1][0], temp+1, 2):
+        top = max(int(temp**0.5)-1, factors[-1][0])
+        for i in range(factors[-1][0], top+1, 2):
             if temp % i == 0:
                 count = 0
                 while temp % i== 0:
@@ -25,6 +26,10 @@ while combi <= 500:
                     temp //= i
                 factors.append([i, count])
                 break
+            elif (i == top-1) or (i == top):
+                count = 1
+                factors.append([temp, count])
+                temp //= temp
 
     combi = 1
     for i in range(1, len(factors)):
